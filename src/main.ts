@@ -1,19 +1,17 @@
 
-import MidiListener from "./MidiListener"
+/// <reference path="../node_modules/midi-listener/source/web-midi.d.ts"/>
 
-navigator.requestMIDIAccess()
+import MidiListener from "midi-listener"
 
-  .then(access => new MidiListener({
-    access,
-    onInputChange: inputs => console.log(`MIDI Inputs: [${inputs.join(", ")}]`),
-    onMessage: message => console.log("Message:", message)
-  }))
+(async function() {
 
-  .then(midiListener => {
-    window["midi"] = midiListener
+  const midiListener = window["midiListener"] = new MidiListener({
+    access: await navigator.requestMIDIAccess(),
+    onInputChange: inputs => console.debug(`MIDI Inputs: [${inputs.join(", ")}]`),
+    onParse: parse => console.debug(`Midi listener parse:`, parse),
+    onNote: (note, velocity) => console.log(` - Note:`, note, ',', velocity.toFixed(2)),
+    onPad: (pad, velocity) => console.log(` - Pad:`, pad, ',', velocity.toFixed(2)),
+    onPitchBend: value => console.log(` - Pitch bend:`, value.toFixed(2)),
+    onModWheel: value => console.log(` - Mod wheel:`, value.toFixed(2))
   })
-
-  .catch(error => {
-    error.message = `Midi listener failed to construct: ${error.message}`
-    throw error
-  })
+})()

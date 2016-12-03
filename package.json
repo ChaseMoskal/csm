@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "build": "rimraf build && tsc && set NODE_ENV=production&& browserify build/main.js | uglifyjs -m > build/main.bundle.js && node-sass --source-map true src/style.scss build/style.css && echo Build complete.",
-    "build-debug-with-sass": "rimraf build && tsc && browserify --debug build/main.js > build/main.bundle.js && node-sass --source-map true src/style.scss build/style.css && echo Build complete.",
+    "build-debug-with-sass": "tsc && browserify --debug build/main.js > build/main.bundle.js && node-sass --source-map true src/style.scss build/style.css && echo Build complete.",
     "build-debug": "tsc && browserify --debug build/main.js > build/main.bundle.js && echo Build complete.",
     "test": "echo Not test driven, lol && exit 0",
     "start": "http-server -p 8080"
@@ -15,6 +15,8 @@
   "license": "ISC",
   "devDependencies": {
     "@types/core-js": "^0.9.34",
+    "@types/react": "^0.14.52",
+    "@types/react-dom": "^0.14.19",
     "browserify": "^13.1.1",
     "http-server": "^0.9.0",
     "node-sass": "^3.13.0",
@@ -22,5 +24,10 @@
     "typescript": "^2.2.0-dev.20161126",
     "uglify-js": "^2.7.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "midi-listener": "0.0.0",
+    "react": "^15.4.1",
+    "react-canvas": "^1.2.1",
+    "react-dom": "^15.4.1"
+  }
 }

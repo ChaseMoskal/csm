@@ -15,7 +15,7 @@
     },
     {
       "taskName": "build",
-      "args": ["run", "build-debug", "-s"]
+      "args": ["run", "build", "-s"]
     },
     {
       "taskName": "test",

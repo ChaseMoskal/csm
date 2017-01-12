@@ -9,6 +9,7 @@
     "outDir": "build",
     "jsx": "react",
     "paths": {},
-    "sourceMap": true
+    "sourceMap": true,
+    "lib": ["dom", "es2015"]
   }
 }

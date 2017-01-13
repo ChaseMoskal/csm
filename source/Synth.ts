@@ -3,7 +3,7 @@ import * as Tone from "tone"
 import MidiListener, {NoteReport} from "midi-listener"
 
 /**
- * Options for instruments.
+ * Options for an instrument.
  */
 export interface InstrumentOptions {
 
@@ -24,8 +24,12 @@ export default class Synth {
    */
   constructor({midiListener}: InstrumentOptions) {
 
-    // Play notes from the midi listener.
-    midiListener.subscribe({onNote: report => this.play(report)})
+    // Subscribe to midi listener.
+    midiListener.subscribe({
+
+      // Play notes.
+      onNote: report => this.play(report)
+    })
 
     // Initialize the Tone JS instrument.
     this.instrument = new Tone.PolySynth(6, Tone.Synth)

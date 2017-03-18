@@ -1,6 +1,6 @@
 
 import * as Tone from "tone"
-import MidiListener, {NoteReport} from "midi-listener"
+import MidiListener, {NoteReport} from "./MidiListener"
 
 /**
  * Options for an instrument.

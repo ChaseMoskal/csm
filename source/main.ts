@@ -1,8 +1,6 @@
 
-/// <reference path="../node_modules/midi-listener/source/web-midi.d.ts"/>
-
-import MidiListener from "midi-listener"
-import Synth from "./Synth"
+import MidiListener from "./music/MidiListener"
+import Synth from "./music/Synth"
 
 (async () => {
 

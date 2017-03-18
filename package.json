@@ -5,29 +5,27 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "release-build": "rimraf build && tsc && set NODE_ENV=production&& browserify build/main.js | uglifyjs -m > build/main.bundle.js && node-sass --source-map true source/style.scss build/style.css && echo Build complete.",
-    "build": "tsc && browserify --debug build/main.js > build/main.bundle.js && node-sass --source-map true source/style.scss build/style.css && echo Build complete.",
-    "build-js-only": "tsc && browserify --debug build/main.js > build/main.bundle.js && echo Build complete.",
+    "build": "run-s build-clean && run-p build-scripts build-styles && echo Done build.",
+    "build-release": "run-s build-clean && run-p build-scripts-release build-styles && echo Done build.",
+    "build-clean": "rimraf build",
+    "build-scripts": "tsc && browserify --debug build/main.js > build/main.bundle.js",
+    "build-scripts-release": "tsc && set NODE_ENV=production&& browserify build/main.js | uglifyjs -m > build/main.bundle.js",
+    "build-styles": "node-sass --source-map true source/style.scss build/style.css",
     "test": "echo Not test driven, lol && exit 0",
     "start": "http-server -p 8080"
   },
   "author": "Chase Moskal <chasemoskal@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@types/react": "^0.14.52",
-    "@types/react-dom": "^0.14.19",
-    "browserify": "^13.1.1",
+    "browserify": "^14.1.0",
     "http-server": "^0.9.0",
-    "node-sass": "^3.13.0",
+    "node-sass": "^4.5.0",
+    "npm-run-all": "^4.0.2",
     "rimraf": "^2.5.4",
     "typescript": "^2.2.0-dev.20170111",
     "uglify-js": "^2.7.4"
   },
   "dependencies": {
-    "midi-listener": "^0.1.0",
-    "react": "^15.4.1",
-    "react-canvas": "^1.2.1",
-    "react-dom": "^15.4.1",
-    "tone": "^0.8.0"
+    "tone": "^0.9.0"
   }
 }

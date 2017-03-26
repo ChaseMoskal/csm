@@ -32,17 +32,25 @@ export default class Synth {
     })
 
     // Initialize the Tone JS instrument.
-    this.instrument = new Tone.PolySynth(6, Tone.Synth)
+    this.instrument = new Tone.PolySynth(6, Tone.MonoSynth)
     this.instrument.set({
+      portamento: 0.02,
       oscillator: {
-        type: "pwm",
-        modulationFrequency: 0.4
+        type: "sine"
       },
       envelope: {
-        attack: 0.02,
+        attack: 0.01,
+        decay: 0.2,
+        sustain: 0.4,
+        release: 1.4,
+      },
+      filterEnvelope: {
+        attack: 0.005,
         decay: 0.1,
-        sustain: 0.2,
-        release: 0.5
+        sustain: 0.02,
+        release: 0.8,
+        baseFrequency: 300,
+        octaves: 4
       }
     })
     this.instrument.toMaster()

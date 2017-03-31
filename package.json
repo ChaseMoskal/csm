@@ -1,6 +1,6 @@
 {
   "name": "csm-music-engine",
-  "version": "0.0.0",
+  "version": "0.1.0-dev",
   "description": "Music project featuring Web MIDI and Web Audio.",
   "main": "index.js",
   "private": true,
